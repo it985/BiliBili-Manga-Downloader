@@ -123,7 +123,7 @@ class MangaUI(QObject):
             self.present_comic_id = comic_id
             self.resolveEnable("resolving")
             comic = Comic(self.present_comic_id, self.mainGUI)
-            self.updateComicInfoEvent(comic, "bilibili")
+            self.updateComicInfoEvent(comic, "done")
 
         self.mainGUI.lineEdit_manga_search_id.returnPressed.connect(_)
         self.mainGUI.pushButton_manga_search_id.clicked.connect(_)
@@ -138,7 +138,7 @@ class MangaUI(QObject):
             self.present_comic_id = self.search_info[index]["id"]
             self.resolveEnable("resolving")
             comic = Comic(self.present_comic_id, self.mainGUI)
-            self.updateComicInfoEvent(comic, "bilibili")
+            self.updateComicInfoEvent(comic, "done")
 
         self.mainGUI.listWidget_manga_search.itemDoubleClicked.connect(_)
 
@@ -370,13 +370,12 @@ class MangaUI(QObject):
     # 以下三个函数是为了获取漫画信息详情
     ############################################################
 
-    ############################################################
     def updateComicInfoEvent(self, comic: Comic, resolve_type: str, _event: QEvent = None) -> None:
         """更新漫画信息详情界面
 
         Args:
             comic (Comic): 漫画类实例
-            resolve_type (str): 更新的解析类型
+            resolve_type (str): 更新的进度类型
         """
 
         if self.mainGUI.label_resolve_status.text() == "":
@@ -393,7 +392,7 @@ class MangaUI(QObject):
 
         Args:
             comic (Comic): 获取的漫画实例
-            resolve_type (str): 更新的解析类型
+            resolve_type (str): 更新的进度类型
 
         """
 
@@ -609,7 +608,7 @@ class MangaUI(QObject):
 
         """
 
-        if len(info) == 0:
+        if not info:
             self.mainGUI.listWidget_chp_detail.clear()
             return
         title: str = info["title"]
@@ -786,7 +785,7 @@ class MangaUI(QObject):
                 return
             self.resolveEnable("resolving")
             comic = Comic(self.present_comic_id, self.mainGUI)
-            self.updateComicInfoEvent(comic, "bilibili")
+            self.updateComicInfoEvent(comic, "done")
 
         self.mainGUI.pushButton_resolve_detail.clicked.connect(_)
 
@@ -797,11 +796,13 @@ class MangaUI(QObject):
                 QMessageBox.critical(self.mainGUI, "警告", "请先在搜索或库存列表选择一个漫画！")
                 return
             if not self.mainGUI.getConfig("biliplus_cookie"):
-                QMessageBox.critical(self.mainGUI, "警告", "请先在设置界面填写自己的BiliPlus Cookie！")
+                QMessageBox.critical(
+                    self.mainGUI, "警告", "请先在设置界面填写自己的BiliPlus Cookie！"
+                )
                 return
             self.resolveEnable("resolving")
             comic = BiliPlusComic(self.present_comic_id, self.mainGUI)
-            self.updateComicInfoEvent(comic, "biliplus")
+            self.updateComicInfoEvent(comic, "done")
 
         self.mainGUI.pushButton_biliplus_resolve_detail.clicked.connect(_)
 
@@ -868,7 +869,6 @@ class MangaUI(QObject):
             self.mainGUI.tabWidget_download_list.setCurrentIndex(0)
 
         self.mainGUI.pushButton_chp_detail_download_selected.clicked.connect(_)
-        self.mainGUI.pushButton_biliplus_detail_download_selected.clicked.connect(_)
 
     ###########################################################
 
@@ -882,17 +882,12 @@ class MangaUI(QObject):
             self.mainGUI.pushButton_resolve_detail.setEnabled(False)
             self.mainGUI.pushButton_biliplus_resolve_detail.setEnabled(False)
             self.mainGUI.pushButton_chp_detail_download_selected.setEnabled(False)
-            self.mainGUI.pushButton_biliplus_detail_download_selected.setEnabled(False)
         else:
             self.mainGUI.pushButton_resolve_detail.setEnabled(True)
             self.mainGUI.pushButton_biliplus_resolve_detail.setEnabled(True)
 
-        if resolve_type == "bilibili":
+        if resolve_type == "done":
             self.mainGUI.pushButton_chp_detail_download_selected.setEnabled(True)
-            self.mainGUI.pushButton_biliplus_detail_download_selected.setEnabled(False)
-        elif resolve_type == "biliplus":
-            self.mainGUI.pushButton_chp_detail_download_selected.setEnabled(False)
-            self.mainGUI.pushButton_biliplus_detail_download_selected.setEnabled(True)
 
     ############################################################
 

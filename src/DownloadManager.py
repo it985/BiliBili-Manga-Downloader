@@ -167,13 +167,11 @@ class DownloadManager:
             save_path = None
             if rate == 1:
                 save_path = epi.save(imgs_path)
-                epi.clearAfterSave(imgs_path)
 
             self.updateTaskInfo(curr_id, rate)
             self.signal_rate_progress.emit(
                 {"taskID": curr_id, "rate": int(rate * 100), "path": save_path}
             )
-
 
     ############################################################
     # ? 为以后的特典下载留的接口

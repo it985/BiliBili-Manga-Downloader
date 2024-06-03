@@ -3,7 +3,7 @@
 <!-- ![GitHub top language](https://img.shields.io/github/languages/top/Zeal-L/BiliBili-Manga-Downloader) -->
 
 ![GitHub Python version](https://img.shields.io/badge/python-v3.12-blue)
-![platform](https://img.shields.io/badge/platform-Windows_|_Linux-blue)
+![platform](https://img.shields.io/badge/platform-Windows_|_Macos_|_Linux-blue)
 ![Scc Count Badge](https://sloc.xyz/github/Zeal-L/BiliBili-Manga-Downloader/)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Zeal-L/BiliBili-Manga-Downloader)
 ![GitHub - License](https://img.shields.io/github/license/Zeal-L/BiliBili-Manga-Downloader)
@@ -75,9 +75,9 @@
     - 利用 [biliplus](https://www.biliplus.com/) 提供的 [ComicWebReader](https://www.biliplus.com/manga/) 在线漫画平台的api来尝试获取更多的可下载章节
     - 该网站现有 4w+ 已关联 `Bilibili` 帐号的访客，也就是说很有概率你想看的漫画已经有人购买了，所以可以尝试一下
     - **特别提示: 毕竟是要提供 Cookie 给第三方网站托管，因此可能会有潜在的安全风险。敏感人群请不要使用自己主账号的 Cookie**
-    - `BiliPlus` 的 `Cookie` 获取方法跟上述一致，在 [ComicWebReader](https://www.biliplus.com/manga/) 登入后在开发者工具中找到 `access_key` 粘贴到程序设置选项中的 `BiliPlus Cookie` 即可
+    - `BiliPlus` 的 `Cookie` 获取方法跟上述类似，在 [ComicWebReader](https://www.biliplus.com/manga/) 登入后在开发者工具中找到 `Cookie` 后，将其整个复制并粘贴到程序设置选项中的 `BiliPlus Cookie` 即可
 
-- **兼容性：支持Windows与Linux平台，MacOs需要自行编译，发现问题的欢迎提Issues**
+- **兼容性：支持Windows、MacOS与Linux平台，发现问题的欢迎提Issues**
 - **搜索 / 选择章节 / 下载 的功能介绍我想已经不言而喻了，这就是图形化界面的好处！**
 - **值得注意的是：本软件不支持断点续传和下载任务缓存的功能 ~~(毕竟一章漫画太小了，好像也没什么必要，断了不如重下)~~，所以请确保不要在下载中途关闭！**
 - **程序缓存和日志历史文件存在 `C:\Users\AppData\Roaming\BiliBili-Manga-Downloader\` 目录下，可以通过"清空用户数据"功能一键删除**
